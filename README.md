@@ -47,7 +47,8 @@ Authenticate with Token provided by following command:
 kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
 
 ```
-## Original README from workshop
+
+---
 
 ![banner](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/banner2.png)
 
