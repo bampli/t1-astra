@@ -1,0 +1,8 @@
+tasks:
+  - init: pip3 install --no-cache-dir -r requirements.txt
+    command: FLASK_ENV=development FLASK_APP=server/app.py flask run
+
+ports:
+  - port: 3000-9090
+    #onOpen: ignore
+    
