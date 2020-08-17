@@ -1,3 +1,54 @@
+# t1-astra
+
+### DataStax Cassandra cluster development with Kind & Tilt
+
+## Using Kind & Tilt to launch infrastructure
+
+Prerequisites:
+- Docker
+- Kind
+- Tilt
+
+### Cluster infrastructure with Cassandra
+
+- Create local registry at localhost:5000
+- Create Cassandra operator v1.3
+- Launch Cassandra
+- Create configMap with secret password
+- Apps apply configMap before running
+- Check Tiltfile
+
+### Get started
+
+```console
+
+# cleaning
+scripts/prune.sh
+
+# start the fun
+scripts/setup.sh
+scripts/setup-configMap.sh
+scripts/setup-dashBoard.sh
+
+# develop apps
+tilt up
+
+```
+
+### Kubernetes Dashboard
+
+Available at:
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+
+Authenticate with Token provided by following command:
+
+```console
+
+kubectl -n kubernetes-dashboard describe secret admin-user-token | grep ^token
+
+```
+## Original README from workshop
+
 ![banner](https://raw.githubusercontent.com/DataStax-Academy/cassandra-workshop-series/master/materials/images/banner2.png)
 
 # ✨ Application Development Your App in Kubernetes ✨
