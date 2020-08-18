@@ -29,7 +29,11 @@ CORS(app)
 @app.route("/")
 def hello():
     if os.getenv('USE_ASTRA') == 'false':
-        SessionManager.initialized = True
+        username = os.getenv('USERNAME')
+        password = os.getenv('PASSWORD')
+        keyspace = os.getenv('KEYSPACE')
+        secure_connection_bundle_path = os.path.abspath('temp_bundle.zip')
+        astra_service.save_credentials(username, password, keyspace, secure_connection_bundle_path)
         astra_service.connect()
         return "Hi, connected to the local database"
     return "Hi, I am the Python backend API. Please connect me to Astra via UI."

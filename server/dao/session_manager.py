@@ -1,7 +1,9 @@
-from cassandra.cluster import Cluster
+from cassandra.cluster import Cluster, GraphExecutionProfile, EXEC_PROFILE_GRAPH_DEFAULT
+from cassandra.graph import GraphOptions, GraphProtocol, graph_graphson3_row_factory
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.query import dict_factory
 from cassandra import Unauthorized, Unavailable, AuthenticationFailed, OperationTimedOut, ReadTimeout
+import os
 
 
 # Sharing a DataStax Driver Session object throughout the application is a best practice
@@ -63,15 +65,26 @@ class SessionManager(object):
             raise Exception('Please initialize the connection parameters first with SessionManager.save_credentials')
 
         if self._session is None:
-            # This is how you use the Astra secure connect bundle to connect to an Astra database
-            # note that the database username and password required.
-            # note that no contact points or any other driver customization is required.
-            astra_config = {
-                'secure_connect_bundle': self.secure_connect_bundle_path
-            }
+            if os.getenv('USE_ASTRA') == 'false':
+                graph_name = os.getenv('KEYSPACE')
+                ep_graphson3 = GraphExecutionProfile(
+                    row_factory=graph_graphson3_row_factory,
+                    graph_options=GraphOptions(
+                        graph_protocol=GraphProtocol.GRAPHSON_3_0, 
+                        graph_name=graph_name))
+                connectionPoint = [os.getenv('CONNECTION_POINTS')]
 
-            cluster = Cluster(cloud=astra_config, auth_provider=PlainTextAuthProvider(self.username, self.password))
-            self._session = cluster.connect(keyspace=self.keyspace)
+                cluster = Cluster(contact_points=connectionPoint, execution_profiles={'core': ep_graphson3})
+                self._session = cluster.connect()
+            else:
+                # This is how you use the Astra secure connect bundle to connect to an Astra database
+                # note that the database username and password required.
+                # note that no contact points or any other driver customization is required.
+                astra_config = {
+                    'secure_connect_bundle': self.secure_connect_bundle_path
+                }
+                cluster = Cluster(cloud=astra_config, auth_provider=PlainTextAuthProvider(self.username, self.password))
+                self._session = cluster.connect(keyspace=self.keyspace)
 
             # have the driver return results as dict
             self._session.row_factory = dict_factory
