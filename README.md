@@ -2,7 +2,9 @@
 
 ### DataStax Cassandra cluster development with Kind & Tilt
 
-This is a fork from the original DataStax Series workshop, reorganized to work with Kind, Tilt, and a local registry. This automation for the workshop's demo app expects to help developers with a starter for new projects.Still a work in progress, some infrastructure is being included, like the Kubernetes dashboard. The idea is to build applications that use microservices to cooperatively access Cassandra databases with both CQL and graph codes.
+This is a fork from the original DataStax Series workshop, reorganized to work with Kind, Tilt, and a local registry. This automation for the workshop's demo app expects to help developers with a starter for new projects.
+
+Still a work in progress, some infrastructure is being included, like the Kubernetes dashboard. The idea is to build applications that use microservices to cooperatively access Cassandra databases with both CQL and graph codes.
 
 ## Kind & Tilt launch infrastructure
 
