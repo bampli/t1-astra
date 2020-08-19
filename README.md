@@ -38,6 +38,8 @@ tilt up
 
 ```
 
+![image](https://user-images.githubusercontent.com/86032/90684134-0fd9c080-e23e-11ea-88f6-5a886a2e7e8c.png)
+
 ### Kubernetes Dashboard
 
 Available at:
