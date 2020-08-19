@@ -11,7 +11,7 @@ Prerequisites:
 - Kind
 - Tilt
 
-### Cluster infrastructure with Cassandra
+### Cluster with Cassandra
 
 - Create local registry at localhost:5000
 - Create and launch Cassandra operator v1.3
