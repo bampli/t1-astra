@@ -14,11 +14,12 @@ Prerequisites:
 ### Cluster infrastructure with Cassandra
 
 - Create local registry at localhost:5000
-- Create Cassandra operator v1.3
-- Launch Cassandra
+- Create and launch Cassandra operator v1.3
 - Create configMap with secret password
 - Apps apply configMap before running
-- Check Tiltfile
+- Setup for VS Code Python debugger
+- Python code changes go directly to cluster container
+- Check Tiltfile for Kubernetes setup
 
 ### Get started
 
