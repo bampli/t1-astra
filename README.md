@@ -4,7 +4,7 @@
 
 This is a fork from the original DataStax Series workshop, reorganized to work with Kind, Tilt, and a local registry. Some infrastructure is being included, like the Kubernetes dashboard. The idea is to build applications that use microservices to cooperatively access Cassandra databases with both CQL and graph codes.
 
-## Using Kind & Tilt to launch infrastructure
+## Kind & Tilt launch infrastructure
 
 Prerequisites:
 - Docker
