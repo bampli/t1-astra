@@ -1,5 +1,5 @@
 tasks:
-  - init: pip3 install --no-cache-dir -r requirements.txt
+  - init: pip3 install --no-cache-dir -r server/requirements.txt
     command: FLASK_ENV=development FLASK_APP=server/app.py flask run
 
 ports:
