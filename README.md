@@ -19,6 +19,7 @@ Prerequisites:
 - Cassandra
 - Kubernetes Dashboard
 - Prometheus
+- DSE Studio
 - Kind with local registry at localhost:5000
 - Ready for GKE with Cassandra operator v1.3
 - Auto generate configMap with secret password
@@ -40,36 +41,40 @@ scripts/setup-cassandra.sh
 scripts/setup-configMap.sh
 scripts/setup-dashBoard.sh
 scripts/setup-prometheus.sh
+scripts/setup-studio.sh
 
 # what you get
 kubectl get pods --all-namespaces
 NAMESPACE              NAME                                                   READY   STATUS    RESTARTS   AGE
-cass-operator          cass-operator-56fcb9ff47-jbvgq                         1/1     Running   0          11m
-cass-operator          cluster1-dc1-default-sts-0                             2/2     Running   0          11m
-kube-system            coredns-66bff467f8-jcljk                               1/1     Running   0          15m
-kube-system            coredns-66bff467f8-m5f6v                               1/1     Running   0          15m
-kube-system            etcd-kind-cassandra-control-plane                      1/1     Running   0          15m
-kube-system            kindnet-47gdg                                          1/1     Running   0          15m
-kube-system            kindnet-l4drp                                          1/1     Running   0          15m
-kube-system            kindnet-q7twg                                          1/1     Running   0          15m
-kube-system            kindnet-sjdql                                          1/1     Running   1          15m
-kube-system            kube-apiserver-kind-cassandra-control-plane            1/1     Running   0          15m
-kube-system            kube-controller-manager-kind-cassandra-control-plane   1/1     Running   1          15m
-kube-system            kube-proxy-2npdg                                       1/1     Running   0          15m
-kube-system            kube-proxy-2qn56                                       1/1     Running   0          15m
-kube-system            kube-proxy-snscn                                       1/1     Running   0          15m
-kube-system            kube-proxy-szg9r                                       1/1     Running   0          15m
-kube-system            kube-scheduler-kind-cassandra-control-plane            1/1     Running   1          15m
-kubernetes-dashboard   dashboard-metrics-scraper-6b4884c9d5-bdb98             1/1     Running   0          9m7s
-kubernetes-dashboard   kubernetes-dashboard-7b544877d5-4tl6d                  1/1     Running   0          9m7s
-local-path-storage     local-path-provisioner-bd4bb6b75-dgbbm                 1/1     Running   0          15m
-prometheus             monitor-kube-state-metrics-d9d84b6b6-854s6             1/1     Running   0          7m35s
-prometheus             monitor-prometheus-alertmanager-68fcd588b6-qbvt9       2/2     Running   0          7m35s
-prometheus             monitor-prometheus-node-exporter-cng92                 1/1     Running   0          7m35s
-prometheus             monitor-prometheus-node-exporter-cr6jw                 1/1     Running   0          7m35s
-prometheus             monitor-prometheus-node-exporter-ps2lc                 1/1     Running   0          7m35s
-prometheus             monitor-prometheus-pushgateway-5c485f6f54-jx2m9        1/1     Running   0          7m35s
-prometheus             monitor-prometheus-server-f8ddc97f-fjr7q               2/2     Running   0          7m35s
+cass-operator          cass-operator-56fcb9ff47-sh7zp                         1/1     Running   0          6h14m
+cass-operator          cluster1-dc1-default-sts-0                             2/2     Running   0          6h14m
+default                astra-backend                                          1/1     Running   0          6h7m
+default                studio-lb-7fc88d786f-srp24                             1/1     Running   0          46m
+kube-system            coredns-66bff467f8-6qwzl                               1/1     Running   0          6h20m
+kube-system            coredns-66bff467f8-kdb5q                               1/1     Running   0          6h20m
+kube-system            etcd-kind-cassandra-control-plane                      1/1     Running   0          6h21m
+kube-system            kindnet-kgtdg                                          1/1     Running   1          6h20m
+kube-system            kindnet-lhlc2                                          1/1     Running   0          6h20m
+kube-system            kindnet-n7xg5                                          1/1     Running   0          6h20m
+kube-system            kindnet-s56xx                                          1/1     Running   0          6h20m
+kube-system            kube-apiserver-kind-cassandra-control-plane            1/1     Running   0          6h21m
+kube-system            kube-controller-manager-kind-cassandra-control-plane   1/1     Running   0          6h21m
+kube-system            kube-proxy-hhkpn                                       1/1     Running   0          6h20m
+kube-system            kube-proxy-mlfqz                                       1/1     Running   0          6h20m
+kube-system            kube-proxy-sn4wz                                       1/1     Running   0          6h20m
+kube-system            kube-proxy-zsndl                                       1/1     Running   0          6h20m
+kube-system            kube-scheduler-kind-cassandra-control-plane            1/1     Running   1          6h21m
+kubernetes-dashboard   dashboard-metrics-scraper-6b4884c9d5-v56df             1/1     Running   0          6h10m
+kubernetes-dashboard   kubernetes-dashboard-7b544877d5-hsrdp                  1/1     Running   0          6h10m
+local-path-storage     local-path-provisioner-bd4bb6b75-vdf48                 1/1     Running   0          6h20m
+prometheus             monitor-kube-state-metrics-d9d84b6b6-nq6k5             1/1     Running   0          6h10m
+prometheus             monitor-prometheus-alertmanager-68fcd588b6-hqjbf       2/2     Running   0          6h10m
+prometheus             monitor-prometheus-node-exporter-j52k8                 1/1     Running   0          6h10m
+prometheus             monitor-prometheus-node-exporter-vwtqc                 1/1     Running   0          6h10m
+prometheus             monitor-prometheus-node-exporter-xdcb5                 1/1     Running   0          6h10m
+prometheus             monitor-prometheus-pushgateway-5c485f6f54-jzvtt        1/1     Running   0          6h10m
+prometheus             monitor-prometheus-server-f8ddc97f-zg8jd               2/2     Running   0          6h10m
+studio                 studio-lb-7fc88d786f-sqjv4                             1/1     Running   0          41m
 
 # develop apps
 tilt up
@@ -123,6 +128,18 @@ Open a browser:
 http://localhost:9090/
 
 ![image](https://user-images.githubusercontent.com/86032/90909696-84327200-e3ac-11ea-9dda-5b657c74ce25.png)
+
+## DSE Studio
+
+Run these commands in the same shell
+
+```console
+export STUDIO_POD_NAME=$(kubectl get pods --namespace studio -l "app=studio-lb" -o jsonpath="{.items[0].metadata.name}")
+kubectl --namespace studio port-forward $STUDIO_POD_NAME 9091
+
+```
+
+![image](https://user-images.githubusercontent.com/86032/90940482-50277300-e3e5-11ea-8361-cd7e82e12178.png)
 
 ## DataStax README
 

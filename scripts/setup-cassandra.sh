@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # DataStax Cassandra setup
 # https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week6-App-in-k8s
 

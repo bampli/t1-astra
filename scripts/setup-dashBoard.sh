@@ -1,5 +1,4 @@
 #!/bin/bash -e
-
 # Kubernetes dashboard v2.0.0-rc5 released 7 feb 2020
 DASHBOARD="https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml"
 
