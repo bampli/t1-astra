@@ -91,26 +91,11 @@ if [ "${kind_network}" != "bridge" ]; then
   fi
 fi
 
-# Load DataStax Cassandra setup
-# https://github.com/DataStax-Academy/cassandra-workshop-series/tree/master/week6-App-in-k8s
-
-# kubectl cluster-info --context kind-kind-cassandra
-# kubectl create ns cass-operator
-# kubectl -n cass-operator apply -f kube/02-storageclass-kind.yaml
-# kubectl -n cass-operator apply -f kube/03-install-cass-operator-v1.3.yaml
-# sleep 5
-# kubectl -n cass-operator apply -f kube/04-cassandra-cluster-1nodes.yaml
-
-# Add secret password to configMap (TODO: should wait cluster finish setup. For now, do it manually, using scripts/setup-configMap.sh)
-# PASS=$(echo $(kubectl get secret cluster1-superuser -n cass-operator -o yaml | grep -m1 -Po 'password: \K.*') | base64 -d && echo "")
-# cat kube/05-configMap.yaml | sed "s/superuserpassword/$PASS/" - > configMap.yaml
-
 # You should be able to push an image to local registry
 # docker tag alpine localhost:5000/alpine
 # docker push localhost:5000/alpine
 
 # TODO: wait for cluster ready
-# jo@CANOAS23 MINGW64 ~
 # $ echo $CLUSTER_NAME
 # kind-cassandra
-#kind get kubeconfig --name "${CLUSTER_NAME}" --internal | sed "s/${CLUSTER_NAME}-control-plane/$(docker inspect "${CLUSTER_NAME}-control-plane" --format "{{ .NetworkSettings.Networks.kind.IPAddress }}")/g"
+# kind get kubeconfig --name "${CLUSTER_NAME}" --internal | sed "s/${CLUSTER_NAME}-control-plane/$(docker inspect "${CLUSTER_NAME}-control-plane" --format "{{ .NetworkSettings.Networks.kind.IPAddress }}")/g"

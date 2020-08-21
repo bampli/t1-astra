@@ -7,7 +7,7 @@ spec:
   - name: astra-backend
     image: astra-backend
     ports:
-        - containerPort: 9090
+        - containerPort: 9999
         - containerPort: 5678
     envFrom:
     - configMapRef:

@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  BASE_ADDRESS: 'http://localhost:9090/api'
+  BASE_ADDRESS: 'http://localhost:9999/api'
   LOCAL_DATACENTER: 'dc1'
   USE_ASTRA: 'false'
   CONNECTION_POINTS: 'cluster1-dc1-service.cass-operator.svc.cluster.local'
