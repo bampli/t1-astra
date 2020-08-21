@@ -36,7 +36,7 @@ scripts/prune.sh
 # start the fun
 scripts/setup.sh
 scripts/setup-cassandra.sh
-# wait for pods initialization
+# wait pods initialization
 scripts/setup-configMap.sh
 scripts/setup-dashBoard.sh
 scripts/setup-prometheus.sh
