@@ -1,6 +1,6 @@
 # t1-astra
 
-### DataStax Cassandra cluster development with Kind & Tilt
+### DataStax Cassandra development with Kind & Tilt
 
 This is a fork from the original DataStax Series workshop, reorganized to work with Kind, Tilt, and a local registry. This automation for the workshop's demo app expects to help developers with a starter for new projects.
 
@@ -16,13 +16,15 @@ Prerequisites:
 
 ### Cluster features
 
-- Create local registry at localhost:5000
-- Create and launch Cassandra operator v1.3
-- Create configMap with secret password
-- Apps apply configMap before running
+- Cassandra
+- Kubernetes Dashboard
+- Prometheus
+- Kind with local registry at localhost:5000
+- Ready for GKE with Cassandra operator v1.3
+- Auto generate configMap with secret password
+- Tilt apply configMap and Kubernetes setup
 - Setup for VS Code Python debugger
-- Python code changes go directly to cluster container
-- Check Tiltfile for Kubernetes setup
+- Code changes go directly to cluster container
 
 ## Get started
 
