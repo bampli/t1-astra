@@ -139,6 +139,10 @@ kubectl --namespace studio port-forward $STUDIO_POD_NAME 9091
 
 ```
 
+Open a browser:
+
+http://localhost:9091/
+
 ![image](https://user-images.githubusercontent.com/86032/90940482-50277300-e3e5-11ea-8361-cd7e82e12178.png)
 
 ## DataStax README
