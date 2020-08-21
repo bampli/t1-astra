@@ -103,6 +103,7 @@ Open a browser and authenticate with token:
 
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
+![image](https://user-images.githubusercontent.com/86032/90908948-77f9e500-e3ab-11ea-9a26-dd9f6a47163d.png)
 
 ## Prometheus
 
