@@ -81,7 +81,7 @@ tilt up
 
 ## VS Code debugger
 
-![image](https://user-images.githubusercontent.com/86032/90907396-4bdd6480-e3a9-11ea-9821-b50277d15c5b.png)
+![image](https://user-images.githubusercontent.com/86032/90913177-40426b80-e3b2-11ea-9c9f-e3579f1141fd.png)
 
 ## Kubernetes Dashboard
 
