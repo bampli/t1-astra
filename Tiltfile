@@ -14,7 +14,7 @@ docker_build('astra-backend', './server',
 ])
 
 k8s_resource('astra-backend', port_forwards=[
-    9090,  # app
+    9999,  # app
     5678,  # debugger
 ])
 
