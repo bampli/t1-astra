@@ -120,6 +120,7 @@ Open a browser:
 
 http://localhost:9090/
 
+![image](https://user-images.githubusercontent.com/86032/90909696-84327200-e3ac-11ea-9dda-5b657c74ce25.png)
 
 ## DataStax README
 
