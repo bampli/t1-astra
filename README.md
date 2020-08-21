@@ -40,6 +40,7 @@ scripts/setup-configMap.sh
 scripts/setup-dashBoard.sh
 scripts/setup-prometheus.sh
 
+# what you get
 kubectl get pods --all-namespaces
 NAMESPACE              NAME                                                   READY   STATUS    RESTARTS   AGE
 cass-operator          cass-operator-56fcb9ff47-jbvgq                         1/1     Running   0          11m
@@ -75,6 +76,10 @@ tilt up
 ```
 
 ![image](https://user-images.githubusercontent.com/86032/90684134-0fd9c080-e23e-11ea-88f6-5a886a2e7e8c.png)
+
+## VS Code debugger
+
+![image](https://user-images.githubusercontent.com/86032/90907396-4bdd6480-e3a9-11ea-9821-b50277d15c5b.png)
 
 ## Kubernetes Dashboard
 
