@@ -42,6 +42,8 @@ scripts/setup-configMap.sh
 scripts/setup-dashBoard.sh
 scripts/setup-prometheus.sh
 scripts/setup-studio.sh
+# open a proxy shell
+scripts/proxy.sh
 
 # what you get
 kubectl get pods --all-namespaces
