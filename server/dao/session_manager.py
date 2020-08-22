@@ -85,9 +85,8 @@ class SessionManager(object):
                 }
                 cluster = Cluster(cloud=astra_config, auth_provider=PlainTextAuthProvider(self.username, self.password))
                 self._session = cluster.connect(keyspace=self.keyspace)
-
-            # have the driver return results as dict
-            self._session.row_factory = dict_factory
+                # have the driver return results as dict
+                self._session.row_factory = dict_factory
 
             # have the driver return LocationUDT as a dict
             cluster.register_user_type(self.keyspace, 'location_udt', dict)
