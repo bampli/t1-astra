@@ -21,7 +21,7 @@ Prerequisites:
 - Prometheus
 - DSE Studio
 - Kind with local registry at localhost:5000
-- Ready for GKE with Cassandra operator v1.3
+- Ready for GKE with Cass-operator by DataStax v1.3
 - Auto generate configMap with secret password
 - Tilt apply configMap and Kubernetes setup
 - Setup for VS Code Python debugger
